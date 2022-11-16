@@ -7,7 +7,7 @@ const BUTTON_CLASSES =
 const { timeout } = defineProps({
   timeout: {
     type: Number,
-    default: Math.random() * 1500,
+    default: Math.random() * 1000,
   },
 });
 
