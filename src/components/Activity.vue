@@ -1,9 +1,9 @@
 <script setup>
 import Pill from "./Pill.vue";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 
 const BUTTON_CLASSES =
-  "inline-block rounded border-2 border-black border-b-black  px-3 py-1 text-white shadow-md hover:font-bold hover:shadow-xl";
+  "basis-36 inline-block rounded border-2 border-black border-b-black  px-3 py-1 text-white shadow-md hover:font-bold hover:shadow-xl";
 const { timeout } = defineProps({
   timeout: {
     type: Number,
@@ -35,7 +35,19 @@ const start = () => {
   // TODO log time spent doing activity?
   console.log(`starting to ${response.value.activity}...`);
 };
-
+const participants = computed(() =>
+  response.value.participants === 1
+    ? "solo"
+    : `${response.value.participants} people`
+);
+const price = computed(() => {
+  const p = response.value.price;
+  return p === 0
+    ? "🫰 free 🤑"
+    : Array(1 + Math.floor(p * 3))
+        .fill("🫰")
+        .join("");
+});
 await roll();
 </script>
 
@@ -43,11 +55,21 @@ await roll();
   <!--TODO apply Suspense to these elems (h1, pill, ok/nah buttons), 
     not from parent to this component as a whole -->
   <h1 class="basis-3/4 text-center text-7xl">
-    {{ response.activity }}
+    <!-- {{ response.activity }} -->
+    Read a formal research paper on an interesting subject
   </h1>
-  <Pill>
-    {{ response.type }}
-  </Pill>
+
+  <div class="flex w-10/12 justify-around">
+    <Pill>
+      {{ participants }}
+    </Pill>
+    <Pill>
+      {{ response.type }}
+    </Pill>
+    <Pill>
+      {{ price }}
+    </Pill>
+  </div>
 
   <div class="flex w-4/5 justify-between">
     <button
