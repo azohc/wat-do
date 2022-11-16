@@ -54,9 +54,8 @@ await roll();
 <template>
   <!--TODO apply Suspense to these elems (h1, pill, ok/nah buttons), 
     not from parent to this component as a whole -->
-  <h1 class="basis-3/4 text-center text-7xl">
-    <!-- {{ response.activity }} -->
-    Read a formal research paper on an interesting subject
+  <h1 class="flex basis-3/4 items-center text-center text-7xl">
+    {{ response.activity }}
   </h1>
 
   <div class="flex w-10/12 justify-around">
