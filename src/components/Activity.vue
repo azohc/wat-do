@@ -2,6 +2,8 @@
 import Pill from "./Pill.vue";
 import { ref } from "vue";
 
+const BUTTON_CLASSES =
+  "inline-block rounded border-2 border-black border-b-black  px-3 py-1 text-white shadow-md hover:font-bold hover:shadow-xl";
 const { timeout } = defineProps({
   timeout: {
     type: Number,
@@ -40,22 +42,22 @@ await roll();
 <template>
   <!--TODO apply Suspense to these elems (h1, pill, ok/nah buttons), 
     not from parent to this component as a whole -->
-  <h1 class="text-center text-3xl">
+  <h1 class="basis-3/4 text-center text-7xl">
     {{ response.activity }}
   </h1>
   <Pill>
     {{ response.type }}
   </Pill>
 
-  <div class="flex w-4/5 justify-evenly">
+  <div class="flex w-4/5 justify-between">
     <button
-      class="inline-block rounded border-2 border-black border-b-black bg-green-700 px-3 py-1 text-white shadow-md hover:font-bold hover:shadow-xl"
+      :class="BUTTON_CLASSES.concat(' bg-green-700')"
       @click="start"
     >
       ok
     </button>
     <button
-      class="inline-block rounded border-2 border-black border-b-black bg-red-700 px-3 py-1 text-white shadow-md hover:font-bold hover:shadow-xl"
+      :class="BUTTON_CLASSES.concat(' bg-red-700')"
       @click="roll"
     >
       nah
