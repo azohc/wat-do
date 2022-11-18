@@ -32,11 +32,11 @@ const price = computed(() => {
 
 const roll = async () => {
   console.debug("Activity:: Fetching... ");
-  // await new Promise((resolve) => {
-  //   setTimeout(() => {
-  //     resolve();
-  //   }, 1000);
-  // });
+  await new Promise((resolve) => {
+    setTimeout(() => {
+      resolve();
+    }, 10000);
+  });
   const res = await fetch(
     "http://www.boredapi.com/api/activity/"
   );
@@ -60,17 +60,22 @@ if (fetching) {
 <template>
   <!--TODO apply Suspense to these elems (h1, pill, ok/nah buttons), 
     not from parent to this component as a whole -->
-  <Spinner v-if="fetching" />
+  <div
+    class="flex h-[400px] w-full items-center justify-center"
+    v-if="fetching"
+  >
+    <Spinner />
+  </div>
   <template v-else>
     <h1
       style="hyphens: auto"
-      class="flex h-96 basis-1/2 items-center break-words text-center text-5xl lowercase"
+      class="flex basis-1/2 items-center break-words text-center text-5xl lowercase"
     >
       {{ response.activity }}
     </h1>
 
     <div
-      class="my-10 flex w-11/12 basis-1/4 flex-wrap items-center justify-around"
+      class="mi-auto my-10 flex w-11/12 basis-1/4 flex-wrap items-center justify-around"
     >
       <Pill>
         {{ response.type }}

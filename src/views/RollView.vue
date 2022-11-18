@@ -23,13 +23,13 @@ const roll = () => (rolling.value = true);
     <Activity :rolling="rolling" @rolled="rolling = false" />
     <template #fallback>
       <div
-        class="fallback-activity flex items-center justify-center"
+        class="mi-auto fallback-activity flex w-full items-center justify-center"
       >
         <Spinner />
       </div>
     </template>
   </Suspense>
-  <div class="flex w-[77vw] justify-between">
+  <div class="mi-auto flex w-[77vw] justify-between">
     <button
       :class="BUTTON_CLASSES.concat(' bg-green-700')"
       @click="start"
