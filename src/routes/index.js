@@ -1,18 +1,14 @@
 import { createRouter, createWebHistory } from "vue-router";
 
 const Roll = () => import("../views/RollView.vue");
+const NotFound = () => import("../views/NotFound.vue");
 
 const routes = [
   { path: "/", component: Roll },
   {
     path: "/:pathMatch(.*)*",
-    component: Roll,
+    component: NotFound,
   },
-  //   {
-  //     path: "/:pathMatch(.*)*",
-  //     name: "notFound",
-  //     component: NotFound,
-  //   },
   //   { path: "/about", component: About },
 ];
 
