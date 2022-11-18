@@ -30,7 +30,6 @@ const roll = () => (rolling.value = true);
       </div>
     </template>
   </Suspense>
-  <div class="push" />
 
   <StickyFooter>
     <div class="mi-auto flex w-[77vw] justify-between">

@@ -55,9 +55,35 @@ watch(fetching, async () => fetching.value && roll());
 if (fetching) {
   await roll();
 }
+
+// HEADING FONT SIZE
+const SHORT_ACTIVITY_TEXT = "text-7xl";
+const LONG_ACTIVITY_TEXT = "text-6xl";
+const LONG_LONG_ACTIVITY_TEXT = "text-5xl";
+const MEGA_LONG_ACTIVITY_TEXT = "text-4xl";
+
+const headingFontSize = computed(() =>
+  megaLongActivity.value
+    ? MEGA_LONG_ACTIVITY_TEXT
+    : longLongActivity.value
+    ? LONG_LONG_ACTIVITY_TEXT
+    : longActivity.value
+    ? LONG_ACTIVITY_TEXT
+    : SHORT_ACTIVITY_TEXT
+);
+const longActivity = computed(
+  () => response.value.activity.length > 22
+);
+const longLongActivity = computed(
+  () => response.value.activity.length > 33
+);
+const megaLongActivity = computed(
+  () => response.value.activity.length > 60
+);
 </script>
 
 <template>
+  {{ response.activity.length }}
   <!--TODO apply Suspense to these elems (h1, pill, ok/nah buttons), 
     not from parent to this component as a whole -->
   <div
@@ -68,7 +94,11 @@ if (fetching) {
   </div>
   <template v-else>
     <h1
-      class="hyphens-auto mi-auto my-6 flex w-4/5 basis-1/2 items-center break-words text-center text-7xl lowercase"
+      :class="
+        'hyphens-auto mi-auto my-6  w-4/5  break-words text-center lowercase '.concat(
+          headingFontSize
+        )
+      "
     >
       {{ response.activity }}
     </h1>
