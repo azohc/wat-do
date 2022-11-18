@@ -2,6 +2,7 @@
 import { ref } from "vue";
 import Activity from "../components/Activity.vue";
 import Spinner from "../components/Spinner.vue";
+import StickyFooter from "../components/StickyFooter.vue";
 
 const BUTTON_CLASSES =
   "h-14 flex justify-around items-center text-2xl \
@@ -29,20 +30,24 @@ const roll = () => (rolling.value = true);
       </div>
     </template>
   </Suspense>
-  <div class="mi-auto flex w-[77vw] justify-between">
-    <button
-      :class="BUTTON_CLASSES.concat(' bg-green-700')"
-      @click="start"
-    >
-      ok
-    </button>
-    <button
-      :class="BUTTON_CLASSES.concat(' bg-red-700')"
-      @click="roll"
-    >
-      nah
-    </button>
-  </div>
+  <div class="push" />
+
+  <StickyFooter>
+    <div class="mi-auto flex w-[77vw] justify-between">
+      <button
+        :class="BUTTON_CLASSES.concat(' bg-green-700')"
+        @click="start"
+      >
+        ok
+      </button>
+      <button
+        :class="BUTTON_CLASSES.concat(' bg-red-700')"
+        @click="roll"
+      >
+        nah
+      </button>
+    </div>
+  </StickyFooter>
 </template>
 
 <style scoped>

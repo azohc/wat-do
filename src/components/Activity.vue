@@ -68,7 +68,7 @@ if (fetching) {
   </div>
   <template v-else>
     <h1
-      class="hyphens-auto mt-6 flex basis-1/2 items-center break-words text-center text-5xl lowercase"
+      class="hyphens-auto mi-auto my-6 flex w-4/5 basis-1/2 items-center break-words text-center text-7xl lowercase"
     >
       {{ response.activity }}
     </h1>
@@ -89,6 +89,4 @@ if (fetching) {
   </template>
 </template>
 
-<style scoped>
-/* TODO */
-</style>
+<style scoped></style>
