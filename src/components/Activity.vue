@@ -24,7 +24,7 @@ const price = computed(() => {
   const p = response.value.price;
   const priceBand = 1 + Math.floor(p * 3);
   return p === 0
-    ? "🫰🤑🤑"
+    ? "zero cost"
     : Array(priceBand)
         .fill(cashEmojis[(cashEmojis.length * Math.random()) | 0])
         .join("");
