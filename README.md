@@ -1,8 +1,10 @@
 # wat do
 
+https://azohc.github.io/wat-do/
+
 ## bored? don't know wat do?
 
-**wat do** exists to let you roll the dice, taking an activity from [boredapi.com](https://www.boredapi.com/) and using [vue3](vuejs.org) and [tailwindcss](tailwindcss.com) to neatly present it.
+[**wat do**](https://azohc.github.io/wat-do/) exists to let you roll the dice, taking an activity from [boredapi.com](https://www.boredapi.com/) and using [vue3](vuejs.org) and [tailwindcss](tailwindcss.com) to neatly present it.
 
 ---
 
