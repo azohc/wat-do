@@ -27,7 +27,7 @@ const CLASSES_INACTIVE = " bg-slate-300";
 </script>
 
 <template>
-  <div class="px-4">
+  <div class="p-4">
     <a
       :class="
         [CLASSES]

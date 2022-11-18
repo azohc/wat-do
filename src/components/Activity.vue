@@ -2,11 +2,6 @@
 import Pill from "./Pill.vue";
 import { computed, ref } from "vue";
 
-const BUTTON_CLASSES =
-  "h-14 flex justify-around items-center text-2xl \
-  basis-32 inline-block rounded border-2 border-black \
-  border-b-black px-3 py-1 text-white shadow-md \
-  hover:font-bold hover:shadow-xl";
 const { timeout } = defineProps({
   timeout: {
     type: Number,
@@ -34,10 +29,6 @@ const roll = async () => {
   }
 };
 
-const start = () => {
-  // TODO log time spent doing activity?
-  console.log(`starting to ${response.value.activity}...`);
-};
 const participants = computed(() =>
   response.value.participants === 1
     ? "solo"
@@ -61,7 +52,7 @@ await roll();
     not from parent to this component as a whole -->
   <h1
     style="hyphens: auto"
-    class="flex basis-1/2 items-center break-words text-center text-5xl lowercase"
+    class="flex h-96 basis-1/2 items-center break-words text-center text-5xl lowercase"
   >
     {{ response.activity }}
   </h1>
@@ -78,21 +69,6 @@ await roll();
     <Pill>
       {{ price }}
     </Pill>
-  </div>
-
-  <div class="flex w-4/5 justify-between">
-    <button
-      :class="BUTTON_CLASSES.concat(' bg-green-700')"
-      @click="start"
-    >
-      ok
-    </button>
-    <button
-      :class="BUTTON_CLASSES.concat(' bg-red-700')"
-      @click="roll"
-    >
-      nah
-    </button>
   </div>
 </template>
 
