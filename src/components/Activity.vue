@@ -3,7 +3,10 @@ import Pill from "./Pill.vue";
 import { computed, ref } from "vue";
 
 const BUTTON_CLASSES =
-  "basis-36 inline-block rounded border-2 border-black border-b-black  px-3 py-1 text-white shadow-md hover:font-bold hover:shadow-xl";
+  "h-14 flex justify-around items-center text-2xl \
+  basis-32 inline-block rounded border-2 border-black \
+  border-b-black px-3 py-1 text-white shadow-md \
+  hover:font-bold hover:shadow-xl";
 const { timeout } = defineProps({
   timeout: {
     type: Number,
@@ -41,12 +44,28 @@ const participants = computed(() =>
     : `${response.value.participants} people`
 );
 const price = computed(() => {
+  const cashEmojis = ["🫰", "💰", "💸", "🤑"];
   const p = response.value.price;
-  return p === 0
-    ? "🫰 free 🤑"
-    : Array(1 + Math.floor(p * 3))
-        .fill("🫰")
-        .join("");
+  const priceBand = 1 + Math.floor(p * 3);
+  let message;
+  switch (priceBand) {
+    case 1:
+      message = "cheap";
+    case 2:
+      message = "average";
+    case 3:
+      message = "costly";
+  }
+  return `
+  ${cashEmojis[(cashEmojis.length * Math.random()) | 0]}
+  ${message} ${
+    cashEmojis[(cashEmojis.length * Math.random()) | 0]
+  }`;
+  // return p === 0
+  //   ? "🫰🤑🤑"
+  //   : Array(priceBand)
+  //       .fill(cashEmojis[(cashEmojis.length * Math.random()) | 0])
+  //       .join("");
 });
 await roll();
 </script>
@@ -54,16 +73,21 @@ await roll();
 <template>
   <!--TODO apply Suspense to these elems (h1, pill, ok/nah buttons), 
     not from parent to this component as a whole -->
-  <h1 class="flex basis-3/4 items-center text-center text-7xl">
+  <h1
+    style="hyphens: auto"
+    class="flex basis-1/2 items-center break-words text-center text-5xl"
+  >
     {{ response.activity }}
   </h1>
 
-  <div class="flex w-10/12 justify-around">
-    <Pill>
-      {{ participants }}
-    </Pill>
+  <div
+    class="flex w-11/12 basis-1/4 flex-wrap items-center justify-around"
+  >
     <Pill>
       {{ response.type }}
+    </Pill>
+    <Pill>
+      {{ participants }}
     </Pill>
     <Pill>
       {{ price }}
