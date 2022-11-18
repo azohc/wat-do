@@ -56,16 +56,16 @@ const price = computed(() => {
     case 3:
       message = "costly";
   }
-  return `
-  ${cashEmojis[(cashEmojis.length * Math.random()) | 0]}
-  ${message} ${
-    cashEmojis[(cashEmojis.length * Math.random()) | 0]
-  }`;
-  // return p === 0
-  //   ? "🫰🤑🤑"
-  //   : Array(priceBand)
-  //       .fill(cashEmojis[(cashEmojis.length * Math.random()) | 0])
-  //       .join("");
+  // return `
+  // ${cashEmojis[(cashEmojis.length * Math.random()) | 0]}
+  // ${message} ${
+  //   cashEmojis[(cashEmojis.length * Math.random()) | 0]
+  // }`;
+  return p === 0
+    ? "🫰🤑🤑"
+    : Array(priceBand)
+        .fill(cashEmojis[(cashEmojis.length * Math.random()) | 0])
+        .join("");
 });
 await roll();
 </script>
