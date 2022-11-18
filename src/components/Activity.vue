@@ -47,7 +47,6 @@ const roll = async () => {
     console.error("Activity:: HTTP Error: " + res.status, res);
   }
   emit("rolled");
-  console.debug("Activity:: Emitting ROLLED");
 };
 
 watch(fetching, async () => fetching.value && roll());
@@ -83,7 +82,6 @@ const megaLongActivity = computed(
 </script>
 
 <template>
-  {{ response.activity.length }}
   <!--TODO apply Suspense to these elems (h1, pill, ok/nah buttons), 
     not from parent to this component as a whole -->
   <div
