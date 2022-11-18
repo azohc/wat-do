@@ -1,5 +1,7 @@
 # TODOs
 
+make buttons a sticky footer? to avoid vertical jump when activity changes
+
 when user presses OK and starts an activity:
 save current time to localstore
 run a timer from then til now

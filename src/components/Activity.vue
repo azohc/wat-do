@@ -61,13 +61,13 @@ await roll();
     not from parent to this component as a whole -->
   <h1
     style="hyphens: auto"
-    class="flex basis-1/2 items-center break-words text-center text-5xl"
+    class="flex basis-1/2 items-center break-words text-center text-5xl lowercase"
   >
     {{ response.activity }}
   </h1>
 
   <div
-    class="flex w-11/12 basis-1/4 flex-wrap items-center justify-around"
+    class="my-10 flex w-11/12 basis-1/4 flex-wrap items-center justify-around"
   >
     <Pill>
       {{ response.type }}
