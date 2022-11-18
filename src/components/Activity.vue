@@ -32,11 +32,11 @@ const price = computed(() => {
 
 const roll = async () => {
   console.debug("Activity:: Fetching... ");
-  await new Promise((resolve) => {
-    setTimeout(() => {
-      resolve();
-    }, 10000);
-  });
+  // await new Promise((resolve) => {
+  //   setTimeout(() => {
+  //     resolve();
+  //   }, 10000);
+  // });
   const res = await fetch(
     "http://www.boredapi.com/api/activity/"
   );
@@ -68,8 +68,7 @@ if (fetching) {
   </div>
   <template v-else>
     <h1
-      style="hyphens: auto"
-      class="flex basis-1/2 items-center break-words text-center text-5xl lowercase"
+      class="hyphens-auto mt-6 flex basis-1/2 items-center break-words text-center text-5xl lowercase"
     >
       {{ response.activity }}
     </h1>

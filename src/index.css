@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.hyphens-auto {
+  hyphens: auto;
+}
+
 .mi-auto {
   margin-inline: auto;
 }
