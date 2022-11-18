@@ -47,20 +47,6 @@ const price = computed(() => {
   const cashEmojis = ["🫰", "💰", "💸", "🤑"];
   const p = response.value.price;
   const priceBand = 1 + Math.floor(p * 3);
-  let message;
-  switch (priceBand) {
-    case 1:
-      message = "cheap";
-    case 2:
-      message = "average";
-    case 3:
-      message = "costly";
-  }
-  // return `
-  // ${cashEmojis[(cashEmojis.length * Math.random()) | 0]}
-  // ${message} ${
-  //   cashEmojis[(cashEmojis.length * Math.random()) | 0]
-  // }`;
   return p === 0
     ? "🫰🤑🤑"
     : Array(priceBand)

@@ -1,12 +1,7 @@
-<script setup>
-import Activity from "./components/Activity.vue";
-</script>
+<script setup></script>
 
 <template>
-  <Suspense>
-    <Activity />
-    <template #fallback> Loading.. </template>
-  </Suspense>
+  <router-view />
 </template>
 
 <style></style>
