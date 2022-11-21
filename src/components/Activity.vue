@@ -2,6 +2,7 @@
 import Pill from "./Pill.vue";
 import { computed, ref, toRef, watch } from "vue";
 import Spinner from "./Spinner.vue";
+import { EVENT__ACTIVIY_ROLLED } from "../commons";
 
 const props = defineProps({
   rolling: {
@@ -9,26 +10,27 @@ const props = defineProps({
     default: true,
   },
 });
-const emit = defineEmits(["rolled"]);
+const emit = defineEmits([EVENT__ACTIVIY_ROLLED]);
 
 const fetching = toRef(props, "rolling");
 const response = ref({});
 
-const participants = computed(() =>
-  response.value.participants === 1
-    ? "solo"
-    : `${response.value.participants} people`
-);
-const price = computed(() => {
-  const cashEmojis = ["🫰", "💰", "💸", "🤑"];
-  const p = response.value.price;
-  const priceBand = 1 + Math.floor(p * 3);
-  return p === 0
-    ? "zero cost"
-    : Array(priceBand)
-        .fill(cashEmojis[(cashEmojis.length * Math.random()) | 0])
-        .join("");
-});
+// TODO REMOVE
+// const participants = computed(() =>
+//   response.value.participants === 1
+//     ? "solo"
+//     : `${response.value.participants} people`
+// );
+// const price = computed(() => {
+//   const cashEmojis = ["🫰", "💰", "💸", "🤑"];
+//   const p = response.value.price;
+//   const priceBand = 1 + Math.floor(p * 3);
+//   return p === 0
+//     ? "zero cost"
+//     : Array(priceBand)
+//         .fill(cashEmojis[(cashEmojis.length * Math.random()) | 0])
+//         .join("");
+// });
 
 const roll = async () => {
   console.debug("Activity:: Fetching... ");
@@ -46,7 +48,7 @@ const roll = async () => {
   } else {
     console.error("Activity:: HTTP Error: " + res.status, res);
   }
-  emit("rolled");
+  emit(EVENT__ACTIVIY_ROLLED);
 };
 
 watch(fetching, async () => fetching.value && roll());
@@ -100,8 +102,12 @@ const megaLongActivity = computed(
     >
       {{ response.activity }}
     </h1>
+    <Pill class="mi-auto mt-16 h-12 w-3/5">
+      {{ response.type }}
+    </Pill>
 
-    <div
+    <!-- TODO REMOVE?  -->
+    <!-- <div
       class="mi-auto my-10 flex w-11/12 basis-1/4 flex-wrap items-center justify-around"
     >
       <Pill>
@@ -113,7 +119,7 @@ const megaLongActivity = computed(
       <Pill>
         {{ price }}
       </Pill>
-    </div>
+    </div> -->
   </template>
 </template>
 

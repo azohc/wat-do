@@ -9,3 +9,7 @@
 .mi-auto {
   margin-inline: auto;
 }
+
+.hi {
+  height: inherit;
+}

@@ -16,7 +16,7 @@ const isActive = ref(props.active);
 
 const CLASSES =
   "inline-block rounded border-2 border-black border-b-black\
-   px-3 py-1 shadow-md text-center h-16 text-xl flex justify-around\
+   px-3 py-1 shadow-md text-center hi text-xl flex justify-around\
    items-center ";
 const CLASSES_CLICKABLE = "hover:font-bold hover:shadow-xl";
 const CLASSES_UNCLICKABLE = "cursor-default";
@@ -27,7 +27,7 @@ const CLASSES_INACTIVE = " bg-slate-300";
 </script>
 
 <template>
-  <div class="p-4">
+  <div>
     <a
       :class="
         [CLASSES]
