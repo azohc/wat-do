@@ -5,7 +5,6 @@ const DoingView = () => import("../views/DoingView.vue");
 const LogView = () => import("../views/LogView.vue");
 const NotFound = () => import("../views/NotFound.vue");
 
-// TODO fix base route on deployed page
 const routes = [
   { path: "/", component: RollView },
   { path: "/doing", component: DoingView },
@@ -14,11 +13,10 @@ const routes = [
     path: "/:pathMatch(.*)*",
     component: NotFound,
   },
-  //   { path: "/about", component: About },
 ];
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory("/wat-do/"),
   routes,
 });
 

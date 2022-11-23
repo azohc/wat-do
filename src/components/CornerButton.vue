@@ -13,10 +13,10 @@ const { text, to } = defineProps({
 
 <template>
   <div class="fixed flex w-full flex-row-reverse">
-    <!-- TODO abstract out router-link to app and conditionally show on certain routes? -->
+    <!-- TDDANI abstract out router-link to app and conditionally show on certain routes? -->
     <router-link
       :to="to"
-      class="m-2 flex h-[40px] w-[40px] items-center justify-center rounded-md bg-slate-400"
+      class="m-2 flex h-[40px] w-[40px] items-center justify-center rounded border-2 border-black border-b-black bg-slate-400 font-bold opacity-50 hover:opacity-100"
     >
       {{ text }}
     </router-link>

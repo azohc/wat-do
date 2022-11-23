@@ -7,8 +7,18 @@ import {
 import { ref } from "vue";
 import { logActivityDone } from "../db";
 import { useActivityStore } from "../stores/activity";
+import { useRouter } from "vue-router";
 
+const router = useRouter();
 const store = useActivityStore();
+
+if (
+  !store ||
+  !store.activity ||
+  !Object.hasOwn(store.activity, "activity")
+) {
+  router.replace("/"); // TDDANI fix
+}
 
 const doing = ref(true);
 const timer = ref({
@@ -47,13 +57,16 @@ const formatTimeSegment = (num) => {
 
 const done = () => {
   logActivityDone(store.activity.activity, timer.value);
-  // TODO programatic redirect
+  router.push("/log");
 };
 </script>
 
 <template>
   <div class="flex flex-col items-center">
-    <h1 class="my-6 text-center text-4xl">
+    <h1
+      class="my-6 text-center text-4xl"
+      v-if="store.activity"
+    >
       you started to
       {{ store.activity.activity }}
     </h1>
@@ -93,14 +106,6 @@ const done = () => {
         >
           finish
         </button>
-
-        <!-- TODO remove for programatic redirect in finish-->
-        <!-- <router-link
-          to="/log"
-          :class="BUTTON_CLASSES.concat(' bg-red-700')"
-        >
-          finish
-        </router-link> -->
       </template>
     </div>
   </StickyFooter>
