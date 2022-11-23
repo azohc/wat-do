@@ -7,9 +7,7 @@ import CornerButton from "../components/CornerButton.vue";
 
 <template>
   <CornerButton to="/" text="x"> </CornerButton>
-  asdf todo
+  asdf
 </template>
 
-<style scoped>
-/* TODO */
-</style>
+<style scoped></style>

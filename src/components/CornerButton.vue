@@ -23,6 +23,4 @@ const { text, to } = defineProps({
   </div>
 </template>
 
-<style scoped>
-/* TODO */
-</style>
+<style scoped></style>

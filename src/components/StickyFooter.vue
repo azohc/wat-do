@@ -1,6 +1,4 @@
-<script setup>
-// TODO
-</script>
+<script setup></script>
 
 <template>
   <footer class="fixed bottom-0 w-full py-6">

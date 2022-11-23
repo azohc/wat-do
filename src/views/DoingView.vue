@@ -6,6 +6,9 @@ import {
 } from "../commons";
 import { ref } from "vue";
 import { logActivityDone } from "../db";
+import { useActivityStore } from "../stores/activity";
+
+const store = useActivityStore();
 
 const doing = ref(true);
 const timer = ref({
@@ -43,16 +46,16 @@ const formatTimeSegment = (num) => {
 };
 
 const done = () => {
-  logActivityDone("todo get activity from store", timer.value);
-
-  // TODO programatic redirect ;
+  logActivityDone(store.activity.activity, timer.value);
+  // TODO programatic redirect
 };
 </script>
 
 <template>
   <div class="flex flex-col items-center">
     <h1 class="my-6 text-center text-4xl">
-      nice! you started: {{ "todo get activity from store" }}
+      you started to
+      {{ store.activity.activity }}
     </h1>
 
     <main class="mt-12 text-8xl">
@@ -91,6 +94,7 @@ const done = () => {
           finish
         </button>
 
+        <!-- TODO remove for programatic redirect in finish-->
         <!-- <router-link
           to="/log"
           :class="BUTTON_CLASSES.concat(' bg-red-700')"

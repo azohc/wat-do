@@ -41,7 +41,9 @@ const CLASSES_INACTIVE = " bg-slate-300";
               ? CLASSES_CLICKABLE
               : CLASSES_UNCLICKABLE
           )
-          .concat(isActive ? CLASSES_ACTIVE : CLASSES_INACTIVE)
+          .concat(
+            isActive ? CLASSES_ACTIVE : CLASSES_INACTIVE
+          )
       "
       href="#"
     >
@@ -50,15 +52,4 @@ const CLASSES_INACTIVE = " bg-slate-300";
   </div>
 </template>
 
-<style scoped>
-/* TODO 
-
-label is a little pill with a text on it
-it has an onhover efect that can hint that it's clickable
-can go active/inactive potentially, as if part of a selector 
-    e.g. a multi-select filter that includes the types of activity 
-    so as to view them or not view them
-
-
-*/
-</style>
+<style scoped></style>
