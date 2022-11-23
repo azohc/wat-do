@@ -71,7 +71,13 @@ const done = () => {
       {{ store.activity.activity }}
     </h1>
 
-    <main class="mt-12 text-8xl">
+    <main
+      :class="
+        'mt-12 text-8xl '.concat(
+          doing ? '' : 'opacity-oscillating'
+        )
+      "
+    >
       <span>{{ formatTimeSegment(timer.hours) }}</span>
       <span>:</span>
       <span>{{ formatTimeSegment(timer.minutes) }}</span>
@@ -111,4 +117,12 @@ const done = () => {
   </StickyFooter>
 </template>
 
-<style scoped></style>
+<style scoped>
+/* TODO 
+opacity oscillation when paused
+*/
+
+.opacity-oscillating {
+  opacity: 0.5;
+}
+</style>

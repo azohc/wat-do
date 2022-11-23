@@ -1,13 +1,10 @@
 <script setup>
-import CornerButton from "../components/CornerButton.vue";
-
 // TODO GET HISTORY FROM LOCALSTORAGE
 // TODO PUT IN TABLE
 </script>
 
 <template>
-  <CornerButton to="/" text="x"> </CornerButton>
-  asdf
+  <h1>LOG</h1>
 </template>
 
 <style scoped></style>

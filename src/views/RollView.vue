@@ -6,6 +6,7 @@ import StickyFooter from "../components/StickyFooter.vue";
 import {
   BUTTON_CLASSES,
   FOOTER_CONTAINER_CLASSES,
+  ROUTE_DOING,
 } from "../commons";
 
 const rolling = ref(true);
@@ -15,7 +16,10 @@ const roll = () => (rolling.value = true);
 
 <template>
   <Suspense>
-    <Activity :rolling="rolling" @rolled="rolling = false" />
+    <Activity
+      :rolling="rolling"
+      @rolled="rolling = false"
+    />
     <template #fallback>
       <div
         class="mi-auto fallback-activity flex w-full items-center justify-center"
@@ -28,7 +32,7 @@ const roll = () => (rolling.value = true);
   <StickyFooter>
     <div :class="FOOTER_CONTAINER_CLASSES">
       <router-link
-        to="/doing"
+        :to="{ name: ROUTE_DOING }"
         :class="BUTTON_CLASSES.concat(' bg-green-700')"
       >
         ok
