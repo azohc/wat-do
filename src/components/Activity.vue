@@ -12,7 +12,7 @@ const props = defineProps({
 });
 const emit = defineEmits([EVENT__ACTIVIY_ROLLED]);
 
-const fetching = toRef(props, "rolling");
+const doFetch = toRef(props, "rolling");
 const response = ref({});
 
 // TODO REMOVE
@@ -51,11 +51,15 @@ const roll = async () => {
   emit(EVENT__ACTIVIY_ROLLED);
 };
 
-watch(fetching, async () => fetching.value && roll());
+watch(doFetch, async () => doFetch.value && roll());
 
-if (fetching) {
+if (doFetch) {
   await roll();
 }
+
+const handleTypePillClicked = () => {
+  console.log("pill clicked");
+};
 
 // HEADING FONT SIZE
 const SHORT_ACTIVITY_TEXT = "text-7xl";
@@ -88,7 +92,7 @@ const megaLongActivity = computed(
     not from parent to this component as a whole -->
   <div
     class="flex h-[400px] w-full items-center justify-center"
-    v-if="fetching"
+    v-if="doFetch"
   >
     <Spinner />
   </div>
@@ -102,7 +106,11 @@ const megaLongActivity = computed(
     >
       {{ response.activity }}
     </h1>
-    <Pill class="mi-auto mt-16 h-12 w-3/5">
+    <Pill
+      :clickable="true"
+      @pillClicked="handleTypePillClicked"
+      class="mi-auto mt-16 h-12 w-3/5"
+    >
       {{ response.type }}
     </Pill>
 

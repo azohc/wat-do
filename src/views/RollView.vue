@@ -3,19 +3,13 @@ import { ref } from "vue";
 import Activity from "../components/Activity.vue";
 import Spinner from "../components/Spinner.vue";
 import StickyFooter from "../components/StickyFooter.vue";
-
-const BUTTON_CLASSES =
-  "h-14 flex justify-around items-center text-2xl \
-  basis-32 inline-block rounded border-2 border-black \
-  border-b-black px-3 py-1 text-white shadow-md \
-  hover:font-bold hover:shadow-xl";
+import {
+  BUTTON_CLASSES,
+  FOOTER_CONTAINER_CLASSES,
+} from "../commons";
 
 const rolling = ref(true);
 
-const start = () => {
-  // TODO log time spent doing activity?
-  console.log(`starting to ${response.value.activity}...`);
-};
 const roll = () => (rolling.value = true);
 </script>
 
@@ -32,13 +26,13 @@ const roll = () => (rolling.value = true);
   </Suspense>
 
   <StickyFooter>
-    <div class="mi-auto flex w-[77vw] justify-between">
-      <button
+    <div :class="FOOTER_CONTAINER_CLASSES">
+      <router-link
+        to="/doing"
         :class="BUTTON_CLASSES.concat(' bg-green-700')"
-        @click="start"
       >
         ok
-      </button>
+      </router-link>
       <button
         :class="BUTTON_CLASSES.concat(' bg-red-700')"
         @click="roll"
