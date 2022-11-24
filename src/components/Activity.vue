@@ -136,22 +136,22 @@ const megaLongActivity = computed(
     >
       <div class="absolute ml-2 flex flex-col">
         <button
-          class="mb-1 h-9 w-9 rounded-lg border-2 border-zinc-300 text-3xl text-zinc-500 hover:border-zinc-500 hover:text-zinc-900"
+          class="mb-1 h-9 w-9 rounded-lg border-2 border-zinc-300 text-xl text-zinc-500 hover:border-zinc-500 hover:text-zinc-900"
           @click="applyTypeSelection"
         >
-          ✔
+          ✔️
         </button>
         <button
-          class="mb-1 h-9 w-9 rounded-lg border-2 border-zinc-300 text-3xl text-zinc-500 hover:border-zinc-500 hover:text-zinc-900"
+          class="mb-1 h-9 w-9 rounded-lg border-2 border-zinc-300 text-xl text-zinc-500 hover:border-zinc-500 hover:text-zinc-900"
           @click="resetActiveTypes"
         >
           ♻
         </button>
         <button
-          class="h-9 w-9 rounded-lg border-2 border-zinc-300 text-3xl text-zinc-500 hover:border-zinc-500 hover:text-zinc-900"
+          class="h-9 w-9 rounded-lg border-2 border-zinc-300 text-xl text-zinc-500 hover:border-zinc-500 hover:text-zinc-900"
           @click="showTypePicker = false"
         >
-          ❌
+          ✖️
         </button>
       </div>
       <Pill
