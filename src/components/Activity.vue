@@ -5,6 +5,28 @@ import Spinner from "./Spinner.vue";
 import { EVENT__ACTIVIY_ROLLED } from "../commons";
 import { useActivityStore } from "../stores/activity";
 
+const ACTIVITY_TYPES = [
+  "education",
+  "recreational",
+  "social",
+  "diy",
+  "charity",
+  "cooking",
+  "relaxation",
+  "music",
+  "busywork",
+];
+const ACTIVITY_TYPE_COLORS = {
+  education: "slate",
+  recreational: "red",
+  social: "orange",
+  diy: "amber",
+  charity: "lime",
+  cooking: "emerald",
+  relaxation: "sky",
+  music: "violet",
+  busywork: "rose",
+};
 const store = useActivityStore();
 
 const props = defineProps({
@@ -43,9 +65,17 @@ watch(doFetch, async () => doFetch.value && roll());
 if (doFetch) {
   await roll();
 }
+// TODO add absolutely positioned apply/reset/close buttons over typeIncluder
 
-const handleTypePillClicked = () => {
-  console.log("pill clicked");
+const typesToInclude = ref([...ACTIVITY_TYPES]);
+const resetTypesToInclude = () =>
+  (typesToInclude.value = [...ACTIVITY_TYPES]);
+const showTypeIncluder = ref(false);
+const handleTypeIncluderPillClick = () => {
+  showTypeIncluder.value = true;
+};
+const handleActivityTypePillClick = (type) => {
+  console.log("type clicked!", type);
 };
 
 // HEADING FONT SIZE
@@ -94,12 +124,27 @@ const megaLongActivity = computed(
       {{ response.activity }}
     </h1>
     <Pill
+      v-if="!showTypeIncluder"
       :clickable="true"
-      @pillClicked="handleTypePillClicked"
+      @pillClicked="handleTypeIncluderPillClick"
       class="mi-auto mt-16 h-12 w-3/5"
     >
       {{ response.type }}
     </Pill>
+    <div
+      v-else
+      class="mi-auto flex max-h-64 w-3/5 flex-col overflow-scroll overflow-x-auto rounded border-2 border-zinc-400 pt-2"
+    >
+      <Pill
+        v-for="type in ACTIVITY_TYPES"
+        :clickable="true"
+        @pillClicked="
+          () => handleActivityTypePillClick(type)
+        "
+        class="mi-auto mb-2 h-12 w-3/5"
+        >{{ type }}</Pill
+      >
+    </div>
   </template>
 </template>
 
