@@ -132,7 +132,7 @@ const megaLongActivity = computed(
     />
     <div
       v-else
-      class="mi-auto flex max-h-64 w-3/5 flex-col overflow-scroll overflow-x-auto rounded border-2 border-zinc-400 pt-2"
+      class="mi-auto flex max-h-64 w-5/6 flex-col overflow-scroll overflow-x-auto rounded border-2 border-zinc-400 pt-2 sm:w-3/5"
     >
       <div class="absolute ml-2 flex flex-col">
         <button
