@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  background: beige;
+}
+
 .hyphens-auto {
   hyphens: auto;
 }

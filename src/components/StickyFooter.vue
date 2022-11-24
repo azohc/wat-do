@@ -10,7 +10,7 @@
 footer {
   background: linear-gradient(
     0deg,
-    rgba(255, 255, 255, 1) 50%,
+    beige 50%,
     rgba(255, 255, 255, 0) 100%
   );
 }
