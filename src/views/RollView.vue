@@ -32,12 +32,14 @@ const roll = () => (rolling.value = true);
   <StickyFooter>
     <div :class="FOOTER_CONTAINER_CLASSES">
       <router-link
+        :disabled="rolling"
         :to="{ name: ROUTE_DOING }"
         :class="BUTTON_CLASSES.concat(' bg-green-700')"
       >
         ok
       </router-link>
       <button
+        :disabled="rolling"
         :class="BUTTON_CLASSES.concat(' bg-red-700')"
         @click="roll"
       >

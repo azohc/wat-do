@@ -16,6 +16,7 @@ const ACTIVITY_TYPES = [
   "music",
   "busywork",
 ];
+
 const store = useActivityStore();
 
 const props = defineProps({
@@ -26,14 +27,19 @@ const props = defineProps({
 });
 const emit = defineEmits([EVENT__ACTIVIY_ROLLED]);
 
+const typeToFetch = ref(null);
 const doFetch = toRef(props, "rolling");
 const response = ref({});
-
+const activityURL = () => {
+  let url = "http://www.boredapi.com/api/activity";
+  if (typeToFetch.value) {
+    url += `?type=${typeToFetch.value}`;
+  }
+  return url;
+};
 const roll = async () => {
   console.debug("Activity:: Fetching... ");
-  const res = await fetch(
-    "http://www.boredapi.com/api/activity/"
-  );
+  const res = await fetch(activityURL());
   if (res.ok) {
     console.debug("Activity:: HTTP OK: ", res.status);
     response.value = await res.json();
@@ -54,33 +60,22 @@ watch(doFetch, async () => doFetch.value && roll());
 if (doFetch) {
   await roll();
 }
-// TODO add absolutely positioned apply/reset/close buttons over typeIncluder
 
-const typesToInclude = ref([...ACTIVITY_TYPES]);
-const resetTypesToInclude = () =>
-  (typesToInclude.value = [...ACTIVITY_TYPES]);
-const showTypeIncluder = ref(false);
-const handleTypeIncluderPillClick = () => {
-  showTypeIncluder.value = true;
+const activeTypes = ref([...ACTIVITY_TYPES]);
+const resetActiveTypes = () =>
+  (activeTypes.value = [...ACTIVITY_TYPES]);
+
+const showTypePicker = ref(false);
+const handleTypePickerClick = () => {
+  showTypePicker.value = true;
 };
-const handleActivityTypePillClick = (type) => {
-  console.log(
-    "type clicked!",
-    type,
-    typesToInclude.value.length
-  );
-  if (typesToInclude.value.includes(type)) {
-    typesToInclude.value = typesToInclude.value.filter(
-      (t) => t !== type
-    );
-  } else {
-    typesToInclude.value.push(type);
-  }
-  console.log(
-    "type clicked!",
-    type,
-    typesToInclude.value.length
-  );
+const handleActivityTypeClick = (type) => {
+  activeTypes.value = [type];
+};
+const applyTypeSelection = async () => {
+  typeToFetch.value = activeTypes.value[0];
+  showTypePicker.value = false;
+  await roll();
 };
 
 // HEADING FONT SIZE
@@ -129,25 +124,43 @@ const megaLongActivity = computed(
       {{ response.activity }}
     </h1>
     <Pill
-      v-if="!showTypeIncluder"
+      v-if="!showTypePicker"
       :type="response.type"
       :clickable="true"
-      @pillClicked="handleTypeIncluderPillClick"
+      @pillClicked="handleTypePickerClick"
       class="mi-auto mt-16 h-12 w-3/5"
     />
     <div
       v-else
       class="mi-auto flex max-h-64 w-3/5 flex-col overflow-scroll overflow-x-auto rounded border-2 border-zinc-400 pt-2"
     >
+      <div class="absolute ml-2 flex flex-col">
+        <button
+          class="mb-1 h-9 w-9 rounded-lg border-2 border-zinc-300 text-3xl text-zinc-500 hover:border-zinc-500 hover:text-zinc-900"
+          @click="applyTypeSelection"
+        >
+          ✔
+        </button>
+        <button
+          class="mb-1 h-9 w-9 rounded-lg border-2 border-zinc-300 text-3xl text-zinc-500 hover:border-zinc-500 hover:text-zinc-900"
+          @click="resetActiveTypes"
+        >
+          ♻
+        </button>
+        <button
+          class="h-9 w-9 rounded-lg border-2 border-zinc-300 text-3xl text-zinc-500 hover:border-zinc-500 hover:text-zinc-900"
+          @click="showTypePicker = false"
+        >
+          ❌
+        </button>
+      </div>
       <Pill
         v-for="type in ACTIVITY_TYPES"
         :id="type"
         :clickable="true"
         :type="type"
-        :active="typesToInclude.includes(type)"
-        @pillClicked="
-          () => handleActivityTypePillClick(type)
-        "
+        :active="activeTypes.includes(type)"
+        @pillClicked="() => handleActivityTypeClick(type)"
         class="mi-auto mb-2 h-12 w-3/5"
       />
     </div>
