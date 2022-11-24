@@ -64,7 +64,23 @@ const handleTypeIncluderPillClick = () => {
   showTypeIncluder.value = true;
 };
 const handleActivityTypePillClick = (type) => {
-  console.log("type clicked!", type);
+  console.log(
+    "type clicked!",
+    type,
+    typesToInclude.value.length
+  );
+  if (typesToInclude.value.includes(type)) {
+    typesToInclude.value = typesToInclude.value.filter(
+      (t) => t !== type
+    );
+  } else {
+    typesToInclude.value.push(type);
+  }
+  console.log(
+    "type clicked!",
+    type,
+    typesToInclude.value.length
+  );
 };
 
 // HEADING FONT SIZE
@@ -128,6 +144,7 @@ const megaLongActivity = computed(
         :id="type"
         :clickable="true"
         :type="type"
+        :active="typesToInclude.includes(type)"
         @pillClicked="
           () => handleActivityTypePillClick(type)
         "
