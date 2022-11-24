@@ -16,17 +16,6 @@ const ACTIVITY_TYPES = [
   "music",
   "busywork",
 ];
-const ACTIVITY_TYPE_COLORS = {
-  education: "slate",
-  recreational: "red",
-  social: "orange",
-  diy: "amber",
-  charity: "lime",
-  cooking: "emerald",
-  relaxation: "sky",
-  music: "violet",
-  busywork: "rose",
-};
 const store = useActivityStore();
 
 const props = defineProps({
@@ -125,25 +114,25 @@ const megaLongActivity = computed(
     </h1>
     <Pill
       v-if="!showTypeIncluder"
+      :type="response.type"
       :clickable="true"
       @pillClicked="handleTypeIncluderPillClick"
       class="mi-auto mt-16 h-12 w-3/5"
-    >
-      {{ response.type }}
-    </Pill>
+    />
     <div
       v-else
       class="mi-auto flex max-h-64 w-3/5 flex-col overflow-scroll overflow-x-auto rounded border-2 border-zinc-400 pt-2"
     >
       <Pill
         v-for="type in ACTIVITY_TYPES"
+        :id="type"
         :clickable="true"
+        :type="type"
         @pillClicked="
           () => handleActivityTypePillClick(type)
         "
         class="mi-auto mb-2 h-12 w-3/5"
-        >{{ type }}</Pill
-      >
+      />
     </div>
   </template>
 </template>
