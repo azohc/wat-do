@@ -17,7 +17,7 @@ if (
   !store.activity ||
   !Object.hasOwn(store.activity, "activity")
 ) {
-  router.replace("/"); // TDDANI fix
+  router.replace("/");
 }
 
 const doing = ref(true);
@@ -110,7 +110,7 @@ const done = () => {
           @click="done"
           :class="BUTTON_CLASSES.concat(' bg-red-700')"
         >
-          finish
+          done
         </button>
       </template>
     </div>
