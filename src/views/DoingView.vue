@@ -62,9 +62,9 @@ const done = () => {
 </script>
 
 <template>
-  <div class="flex flex-col items-center">
+  <div class="flex flex-col items-center pt-3">
     <h1
-      class="my-6 text-center text-4xl"
+      class="m-10 text-center text-4xl"
       v-if="store.activity"
     >
       you started to

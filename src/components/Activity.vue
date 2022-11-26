@@ -82,6 +82,7 @@ const megaLongActivity = computed(
 </script>
 
 <template>
+  ACT {{ typeToFetch }}
   <div
     class="flex h-[400px] w-full items-center justify-center"
     v-if="doFetch"
@@ -91,7 +92,7 @@ const megaLongActivity = computed(
   <template v-else>
     <h1
       :class="
-        'hyphens-auto mi-auto my-6  w-4/5  break-words text-center '.concat(
+        'hyphens-auto m-10 break-words pt-3 text-center '.concat(
           headingFontSize
         )
       "

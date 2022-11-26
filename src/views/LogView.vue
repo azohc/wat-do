@@ -9,7 +9,7 @@ const activityLogEntries = ref(
 const formatTimeSegment = (time, unit) => {
   let formatted = `${time} ${unit}`;
   if (time !== 1) formatted += "s";
-  return formatted;
+  return formatted + " ";
 };
 </script>
 

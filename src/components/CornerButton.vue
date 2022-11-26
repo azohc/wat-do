@@ -14,7 +14,7 @@ const { text, to } = defineProps({
 <template>
   <router-link
     :to="{ name: to }"
-    class="fixed top-0 right-0 m-2 flex h-[40px] w-[40px] items-center justify-center rounded border-2 border-black border-b-black bg-zinc-400 opacity-30 hover:font-extrabold hover:opacity-80"
+    class="fixed top-0 right-0 m-2 flex h-[36px] w-[36px] items-center justify-center rounded border-2 border-black border-b-black bg-zinc-400 opacity-30 hover:font-extrabold hover:opacity-80"
   >
     {{ text }}
   </router-link>

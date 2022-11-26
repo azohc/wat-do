@@ -34,8 +34,9 @@ const roll = () => {
   store.set(null);
   rolling.value = true;
 };
-const resetActiveTypes = () =>
-  (activeTypes.value = [...ACTIVITY_TYPES]);
+const resetActiveTypes = () => {
+  activeTypes.value = [...ACTIVITY_TYPES];
+};
 
 const handleTypePickerClick = () => {
   showTypePicker.value = true;
@@ -44,13 +45,17 @@ const handleActivityTypeClick = (type) => {
   activeTypes.value = [type];
 };
 const applyTypeSelection = async () => {
-  typeToFetch.value = activeTypes.value[0];
+  typeToFetch.value =
+    activeTypes.value.length === 1
+      ? activeTypes.value[0]
+      : null;
   showTypePicker.value = false;
   roll();
 };
 </script>
 
 <template>
+  RV {{ typeToFetch }}
   <Suspense>
     <Activity
       :type="typeToFetch"
@@ -70,7 +75,7 @@ const applyTypeSelection = async () => {
       v-if="!showTypePicker"
       :type="store.activity.type"
       :clickable="true"
-      :active="typeToFetch"
+      :active="!!typeToFetch"
       @pillClicked="handleTypePickerClick"
       class="mi-auto mt-16 h-12 w-4/6 sm:w-3/5"
     />
