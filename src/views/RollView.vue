@@ -45,6 +45,7 @@ const showTypePicker = ref(false);
 const previousActivityType = ref("slate");
 
 const roll = () => {
+  showTypePicker.value = false;
   previousActivityType.value = store.activity.type;
   store.set(null);
   rolling.value = true;
@@ -149,22 +150,14 @@ const applyTypeSelection = async () => {
     <div :class="FOOTER_CONTAINER_CLASSES">
       <button
         :disabled="rolling"
-        :class="
-          BUTTON_CLASSES.concat(
-            ' bg-green-700 disabled:bg-green-400'
-          )
-        "
+        :class="BUTTON_CLASSES.concat(' bg-green-700')"
         @click="router.push(ROUTE_DOING)"
       >
         ok
       </button>
       <button
         :disabled="rolling"
-        :class="
-          BUTTON_CLASSES.concat(
-            ' bg-red-700 disabled:bg-red-400'
-          )
-        "
+        :class="BUTTON_CLASSES.concat(' bg-red-700')"
         @click="roll"
       >
         nah
