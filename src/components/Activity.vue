@@ -51,7 +51,6 @@ const roll = async () => {
 };
 
 watch(doFetch, async () => {
-  console.log(prevActivityHeight.value);
   if (heading && heading.value) {
     prevActivityHeight.value =
       heading.value.getBoundingClientRect().height;

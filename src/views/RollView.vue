@@ -26,6 +26,17 @@ const ACTIVITY_TYPES = [
   "music",
   "busywork",
 ];
+const ACTIVITY_TYPE_COLORS = {
+  education: "slate",
+  recreational: "red",
+  social: "orange",
+  diy: "amber",
+  charity: "lime",
+  cooking: "emerald",
+  relaxation: "sky",
+  music: "violet",
+  busywork: "rose",
+};
 
 const rolling = ref(true);
 const typeToFetch = ref(null);
@@ -80,12 +91,13 @@ const applyTypeSelection = async () => {
   <template v-else>
     <Pill
       v-if="!showTypePicker"
-      :type="store.activity.type"
+      :color="ACTIVITY_TYPE_COLORS[store.activity.type]"
       :clickable="true"
       :active="!!typeToFetch"
       @pillClicked="handleTypePickerClick"
       class="mi-auto mt-16 h-12 w-4/6 sm:w-3/5"
-    />
+      >{{ store.activity.type }}</Pill
+    >
     <div
       v-else
       class="mi-auto mt-16 flex max-h-56 w-4/6 flex-col overflow-y-scroll rounded border-2 border-zinc-400 pt-2 sm:max-h-64 sm:w-3/5"
@@ -117,11 +129,12 @@ const applyTypeSelection = async () => {
         v-for="type in ACTIVITY_TYPES"
         :id="type"
         :clickable="true"
-        :type="type"
+        :color="ACTIVITY_TYPE_COLORS[type]"
         :active="activeTypes.includes(type)"
         @pillClicked="() => handleActivityTypeClick(type)"
         class="mi-auto mb-2 h-12 w-3/5"
-      />
+        >{{ type }}</Pill
+      >
     </div>
   </template>
 

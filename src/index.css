@@ -2,6 +2,78 @@
 @tailwind components;
 @tailwind utilities;
 
+.bg-slate-active {
+  background: rgb(148 163 184);
+}
+
+.bg-slate-inactive {
+  background: rgb(148 163 184 / 0.4);
+}
+
+.bg-red-active {
+  background: rgb(248 113 113);
+}
+
+.bg-red-inactive {
+  background: rgb(248 113 113 / 0.4);
+}
+
+.bg-orange-active {
+  background: rgb(251 146 60);
+}
+
+.bg-orange-inactive {
+  background: rgb(251 146 60 / 0.4);
+}
+
+.bg-amber-active {
+  background: rgb(251 191 36);
+}
+
+.bg-amber-inactive {
+  background: rgb(251 191 36 / 0.4);
+}
+
+.bg-lime-active {
+  background: rgb(163 230 53);
+}
+
+.bg-lime-inactive {
+  background: rgb(163 230 53 / 0.4);
+}
+
+.bg-emerald-active {
+  background: rgb(52 211 153);
+}
+
+.bg-emerald-inactive {
+  background: rgb(52 211 153 / 0.4);
+}
+
+.bg-sky-active {
+  background: rgb(56 189 248);
+}
+
+.bg-sky-inactive {
+  background: rgb(56 189 248 / 0.4);
+}
+
+.bg-violet-active {
+  background: rgb(167 139 250);
+}
+
+.bg-violet-inactive {
+  background: rgb(167 139 250 / 0.4);
+}
+
+.bg-rose-active {
+  background: rgb(251 113 133);
+}
+
+.bg-rose-inactive {
+  background: rgb(251 113 133 / 0.4);
+}
+
 html {
   background: beige;
 }
