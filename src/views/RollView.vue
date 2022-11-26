@@ -10,7 +10,9 @@ import {
 } from "../commons";
 import Pill from "../components/Pill.vue";
 import { useActivityStore } from "../stores/activity";
+import { useRouter } from "vue-router";
 
+const router = useRouter();
 const store = useActivityStore();
 
 const ACTIVITY_TYPES = [
@@ -63,13 +65,19 @@ const applyTypeSelection = async () => {
     />
     <template #fallback>
       <div
-        class="mi-auto fallback-activity flex w-full items-center justify-center"
+        class="mi-auto my-10 flex h-[111px] w-full items-center justify-center"
       >
         <Spinner />
       </div>
     </template>
   </Suspense>
-  <template v-if="store.activity">
+  <div
+    v-if="!store.activity"
+    class="mi-auto mt-16 flex h-12 w-4/6 items-center justify-center rounded border-2 border-black sm:w-3/5"
+  >
+    <Spinner :color="'rgb(161 161 170)'" />
+  </div>
+  <template v-else>
     <Pill
       v-if="!showTypePicker"
       :type="store.activity.type"
@@ -80,7 +88,7 @@ const applyTypeSelection = async () => {
     />
     <div
       v-else
-      class="mi-auto mt-16 flex max-h-56 w-4/6 flex-col overflow-scroll overflow-x-auto rounded border-2 border-zinc-400 pt-2 sm:max-h-64 sm:w-3/5"
+      class="mi-auto mt-16 flex max-h-56 w-4/6 flex-col overflow-y-scroll rounded border-2 border-zinc-400 pt-2 sm:max-h-64 sm:w-3/5"
     >
       <div class="absolute ml-2 flex flex-col">
         <button
@@ -119,16 +127,24 @@ const applyTypeSelection = async () => {
 
   <StickyFooter>
     <div :class="FOOTER_CONTAINER_CLASSES">
-      <router-link
-        :disabled="rolling"
-        :to="{ name: ROUTE_DOING }"
-        :class="BUTTON_CLASSES.concat(' bg-green-700')"
-      >
-        ok
-      </router-link>
       <button
         :disabled="rolling"
-        :class="BUTTON_CLASSES.concat(' bg-red-700')"
+        :class="
+          BUTTON_CLASSES.concat(
+            ' bg-green-700 disabled:bg-green-400'
+          )
+        "
+        @click="router.push(ROUTE_DOING)"
+      >
+        ok
+      </button>
+      <button
+        :disabled="rolling"
+        :class="
+          BUTTON_CLASSES.concat(
+            ' bg-red-700 disabled:bg-red-400'
+          )
+        "
         @click="roll"
       >
         nah
@@ -138,8 +154,7 @@ const applyTypeSelection = async () => {
 </template>
 
 <style scoped>
-.fallback-activity {
-  height: 400px;
-  width: 90vw;
+button {
+  transition: background-color 0.5s;
 }
 </style>

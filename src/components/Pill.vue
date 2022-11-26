@@ -24,7 +24,7 @@ const emitPillClicked = () => emit(EVENT__PILL_CLICKED);
 const active = toRef(props, "active");
 
 const CLASSES =
-  "inline-block rounded border-2 border-black border-b-black\
+  "inline-block rounded border-2 border-black \
  px-3 py-1 shadow-md text-center hi text-xl flex justify-around\
  items-center flex-grow ";
 const CLASSES_CLICKABLE = "hover:font-bold hover:shadow-xl";

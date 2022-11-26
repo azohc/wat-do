@@ -34,6 +34,7 @@ const activityURL = () => {
 const roll = async () => {
   console.debug("Activity:: Fetching... ");
   const res = await fetch(activityURL());
+  // await new Promise((resolve) => setTimeout(resolve, 1500));
   if (res.ok) {
     console.debug("Activity:: HTTP OK: ", res.status);
     response.value = await res.json();
@@ -49,13 +50,20 @@ const roll = async () => {
   emit(EVENT__ACTIVIY_ROLLED);
 };
 
-watch(doFetch, async () => doFetch.value && roll());
-
-if (doFetch) {
-  await roll();
-}
+watch(doFetch, async () => {
+  console.log(prevActivityHeight.value);
+  if (heading && heading.value) {
+    prevActivityHeight.value =
+      heading.value.getBoundingClientRect().height;
+  }
+  if (doFetch.value) {
+    roll();
+  }
+});
 
 // HEADING FONT SIZE
+const heading = ref(null);
+const prevActivityHeight = ref(222);
 const SHORT_ACTIVITY_TEXT = "text-7xl";
 const LONG_ACTIVITY_TEXT = "text-6xl";
 const LONG_LONG_ACTIVITY_TEXT = "text-5xl";
@@ -79,17 +87,23 @@ const longLongActivity = computed(
 const megaLongActivity = computed(
   () => response.value.activity.length > 60
 );
+
+if (doFetch) {
+  await roll();
+}
 </script>
 
 <template>
   <div
-    class="flex h-[400px] w-full items-center justify-center"
+    class="my-10 flex w-full items-center justify-center"
+    :style="{ height: `${prevActivityHeight}px` }"
     v-if="doFetch"
   >
     <Spinner />
   </div>
   <template v-else>
     <h1
+      ref="heading"
       :class="
         'hyphens-auto m-10 break-words pt-3 text-center '.concat(
           headingFontSize
