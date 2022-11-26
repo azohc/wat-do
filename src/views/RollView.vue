@@ -55,7 +55,6 @@ const applyTypeSelection = async () => {
 </script>
 
 <template>
-  RV {{ typeToFetch }}
   <Suspense>
     <Activity
       :type="typeToFetch"

@@ -82,7 +82,6 @@ const megaLongActivity = computed(
 </script>
 
 <template>
-  ACT {{ typeToFetch }}
   <div
     class="flex h-[400px] w-full items-center justify-center"
     v-if="doFetch"
