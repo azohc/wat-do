@@ -42,15 +42,16 @@ const rolling = ref(true);
 const typeToFetch = ref(null);
 const activeTypes = ref([...ACTIVITY_TYPES]);
 const showTypePicker = ref(false);
+const previousActivityType = ref("slate");
 
 const roll = () => {
+  previousActivityType.value = store.activity.type;
   store.set(null);
   rolling.value = true;
 };
 const resetActiveTypes = () => {
   activeTypes.value = [...ACTIVITY_TYPES];
 };
-
 const handleTypePickerClick = () => {
   showTypePicker.value = true;
 };
@@ -84,9 +85,15 @@ const applyTypeSelection = async () => {
   </Suspense>
   <div
     v-if="!store.activity"
-    class="mi-auto mt-16 flex h-12 w-4/6 items-center justify-center rounded border-2 border-black sm:w-3/5"
+    :class="
+      'mi-auto mt-16 flex h-12 w-4/6 items-center justify-center rounded border-2 border-black sm:w-3/5 '.concat(
+        `bg-${ACTIVITY_TYPE_COLORS[previousActivityType]}-${
+          !!typeToFetch ? 'active' : 'inactive'
+        }`
+      )
+    "
   >
-    <Spinner :color="'rgb(161 161 170)'" />
+    <Spinner :color="'black'" />
   </div>
   <template v-else>
     <Pill
