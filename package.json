@@ -7,16 +7,23 @@
     "build": "vite build",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "test:unit": "vitest --environment jsdom --root src/",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest --coverage"
   },
   "dependencies": {
-    "pinia": "^2.0.25",
+    "vitest": "^0.25.3",
     "vue": "^3.2.25",
     "vue-router": "^4.1.6"
   },
   "devDependencies": {
+    "@pinia/testing": "^0.0.14",
     "@vitejs/plugin-vue": "^2.0.0",
+    "@vue/test-utils": "^2.2.4",
     "gh-pages": "^4.0.0",
+    "jsdom": "^20.0.3",
+    "pinia": "^2.0.27",
     "prettier": "^2.5.1",
     "prettier-plugin-tailwindcss": "^0.1.5",
     "vitawind": "^2.2.4",
