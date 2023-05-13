@@ -1,10 +1,11 @@
 const TOTAL_TIME_INVESTED = "TOTAL_TIME_INVESTED";
+const ACTIVITY_PREFIX = "WAT-DO-";
 // Storing activities as keys and an array of objects that indicate the date it was done and the elapsed time
 export const logActivityDone = (activity, time) => {
   const activityLogs = localStorage.getItem(activity);
   const logEntry = { date: new Date(), elapsedTime: time };
   localStorage.setItem(
-    activity,
+    ACTIVITY_PREFIX + activity,
     JSON.stringify(
       activityLogs
         ? activityLogs.concat([logEntry])
@@ -45,14 +46,15 @@ export const getTotalTimeInvested = () => {
 export const getAllLogs = () => {
   let archive = {},
     keys = Object.keys(localStorage).filter(
-      (k) => k !== TOTAL_TIME_INVESTED
+      (k) =>
+        k !== TOTAL_TIME_INVESTED &&
+        k.search(ACTIVITY_PREFIX) === 0
     ),
     i = keys.length;
 
   while (i--) {
-    archive[keys[i]] = JSON.parse(
-      localStorage.getItem(keys[i])
-    );
+    archive[keys[i].substr(ACTIVITY_PREFIX.length)] =
+      JSON.parse(localStorage.getItem(keys[i]));
   }
 
   return archive;

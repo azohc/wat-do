@@ -25,9 +25,7 @@ const formatTime = (time) => {
   if (time.minutes) {
     str += formatTimeSegment(time.minutes, "minute");
   }
-  if (time.seconds) {
-    str += formatTimeSegment(time.seconds, "second");
-  }
+  str += formatTimeSegment(time.seconds, "second");
   return str.trim();
 };
 </script>
@@ -66,6 +64,7 @@ const formatTime = (time) => {
         >
           <span> for </span>
           <span class="mx-2">
+            <!-- {{ JSON.stringify(log) }} -->
             {{ formatTime(log.elapsedTime) }}
           </span>
           <span>
